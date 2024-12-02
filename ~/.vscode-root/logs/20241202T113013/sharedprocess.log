@@ -1,0 +1,13 @@
+2024-12-02 11:36:26.615 [info] Getting Manifest... bmewburn.vscode-intelephense-client
+2024-12-02 11:36:26.663 [info] Installing extension: bmewburn.vscode-intelephense-client {"isMachineScoped":false,"installPreReleaseVersion":false,"pinned":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/root/.vscode/extensions/extensions.json","path":"/root/.vscode/extensions/extensions.json","scheme":"vscode-userdata"},"installOnlyNewlyAddedFromExtensionPack":true,"isApplicationScoped":false,"productVersion":{"version":"1.95.3","date":"2024-11-13T14:50:04.152Z"}}
+2024-12-02 11:36:30.267 [info] Extension signature verification result for bmewburn.vscode-intelephense-client: Success. Executed: true. Duration: 1881ms.
+2024-12-02 11:36:30.620 [info] Extracted extension to file:///root/.vscode/extensions/bmewburn.vscode-intelephense-client-1.12.6: bmewburn.vscode-intelephense-client
+2024-12-02 11:36:30.626 [info] Renamed to /root/.vscode/extensions/bmewburn.vscode-intelephense-client-1.12.6
+2024-12-02 11:36:30.634 [info] Extension installed successfully: bmewburn.vscode-intelephense-client vscode-userdata:/root/.vscode/extensions/extensions.json
+2024-12-02 11:36:30.708 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/root/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/root/.vscode/extensions/extensions.json.vsctmp'
+    at hm.create (file:///usr/share/code/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:35:39254)
+    at Es (file:///usr/share/code/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:35:39361)
+    at Fr.ib (file:///usr/share/code/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:71:22677)
+    at Fr.stat (file:///usr/share/code/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:71:16010)
+    at async Zl.stat (file:///usr/share/code/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:70:84491)
+    at async Jl.yb (file:///usr/share/code/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:70:66605)

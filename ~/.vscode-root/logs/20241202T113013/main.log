@@ -1,0 +1,25 @@
+2024-12-02 11:30:13.935 [info] update#setState idle
+2024-12-02 11:30:30.498 [info] Extension host with pid 984663 exited with code: 0, signal: unknown.
+2024-12-02 11:30:30.520 [error] [UtilityProcessWorker]: terminated unexpectedly with code 2046432416, signal: unknown
+2024-12-02 11:30:43.937 [info] update#setState checking for updates
+2024-12-02 11:30:44.179 [info] update#setState idle
+2024-12-02 12:30:43.942 [info] update#setState checking for updates
+2024-12-02 12:30:44.278 [info] update#setState idle
+2024-12-02 13:30:43.946 [info] update#setState checking for updates
+2024-12-02 13:30:44.261 [info] update#setState idle
+2024-12-02 13:39:38.423 [warning] [perf] profiling STARTED e6c898b4-05f4-470d-b409-c524d8928bbd
+2024-12-02 13:39:43.496 [warning] [perf] profiling DONE e6c898b4-05f4-470d-b409-c524d8928bbd
+2024-12-02 13:39:43.991 [warning] [perf] profiling STARTED e6c898b4-05f4-470d-b409-c524d8928bbd
+2024-12-02 13:39:49.101 [warning] [perf] profiling DONE e6c898b4-05f4-470d-b409-c524d8928bbd
+2024-12-02 13:39:49.576 [warning] [perf] profiling STARTED e6c898b4-05f4-470d-b409-c524d8928bbd
+2024-12-02 13:39:54.695 [warning] [perf] profiling DONE e6c898b4-05f4-470d-b409-c524d8928bbd
+2024-12-02 13:42:08.884 [warning] [perf] profiling STARTED bff99389-f34f-44fa-bd7e-e3710195fd1b
+2024-12-02 13:42:13.969 [warning] [perf] profiling DONE bff99389-f34f-44fa-bd7e-e3710195fd1b
+2024-12-02 13:42:14.613 [warning] [perf] profiling STARTED bff99389-f34f-44fa-bd7e-e3710195fd1b
+2024-12-02 13:42:19.664 [warning] [perf] profiling DONE bff99389-f34f-44fa-bd7e-e3710195fd1b
+2024-12-02 13:42:20.119 [warning] [perf] profiling STARTED bff99389-f34f-44fa-bd7e-e3710195fd1b
+2024-12-02 13:42:25.170 [warning] [perf] profiling DONE bff99389-f34f-44fa-bd7e-e3710195fd1b
+2024-12-02 14:30:44.034 [info] update#setState checking for updates
+2024-12-02 14:30:44.417 [info] update#setState idle
+2024-12-02 15:30:44.134 [info] update#setState checking for updates
+2024-12-02 15:30:44.494 [info] update#setState idle
