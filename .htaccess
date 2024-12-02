@@ -2,3 +2,8 @@ RewriteEngine On
 
 # Redirige automáticamente al archivo login.html si no hay nada en la URL
 RewriteRule ^$ login.html [L]
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
