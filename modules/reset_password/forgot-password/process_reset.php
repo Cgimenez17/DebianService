@@ -27,7 +27,7 @@ if (isset($_POST['token'], $_POST['email'], $_POST['new_password'])) {
 
         if ($stmt->rowCount() === 1) {
             
-            $stmt = $conn->prepare("UPDATE usuarios SET password = :password WHERE email = :email");
+            $stmt = $conn->prepare("UPDATE usuarios SET password = :password, status='activo' WHERE email = :email");
             $stmt->bindParam(':password', $newPassword);
             $stmt->bindParam(':email', $email);
             $stmt->execute();

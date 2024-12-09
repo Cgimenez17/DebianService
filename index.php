@@ -198,6 +198,22 @@ if (!$auth_user) {
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserrhh"
+                    aria-expanded="true" aria-controls="collapseAdm">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Recursos Humanos</span>
+                </a>
+                <div id="collapserrhh" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="modules/RRHH/empleados/view.php">Lista de Empleados</a>
+                        <a class="collapse-item" href="modules/reset_password/reset.php">Asistencias / Permisos</a>
+                        <a class="collapse-item" href="modules/reset_password/reset.php">CV's y Contratos</a>
+                        <a class="collapse-item" href="modules/reset_password/reset.php">Lotes de Documentos</a>
+                    </div>
+                </div>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -231,7 +247,7 @@ if (!$auth_user) {
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    <!-- Topbar Search>
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -243,7 +259,7 @@ if (!$auth_user) {
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form-->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
