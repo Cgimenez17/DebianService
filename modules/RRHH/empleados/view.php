@@ -269,7 +269,9 @@ if (!$auth_user) {
                         </a>
                         <?php 
                             // Verifica si los parámetros están presentes y, de ser así, incluye el archivo form.php 
-                            if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { include "form.php"; } 
+                            if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { include "form.php"; }
+                            
+                          
                         ?>
                     </div>
 
@@ -294,38 +296,51 @@ if (!$auth_user) {
                             <h6 class="m-0 font-weight-bold text-primary">Empleados</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Cédula de Identidad</th>
-                                            <th>Correo electrónico</th>
-                                            <th>Teléfono</th>
-                                            <th>Fecha de ingreso</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../../../config/database.php';
-                                        $query = mysqli_query($mysqli, "select id_empleado ,nombre, apellido, documento, fecha_ingreso, email, telefono from empleados ;")
-                                            or die('Error: ' . mysqli_error($mysqli));
+                        <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" style="font-size: 15px;" cellspacing="0">
+        <thead>
+            <tr>
+            <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cédula de Identidad</th>
+                <th>Correo electrónico</th>
+                <th>Teléfono</th>
+                <th>Fecha de ingreso</th>
+                <th>Visualizar CV</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            include '../../../config/database.php';
+            $query = mysqli_query($mysqli, "SELECT id_empleado, nombre, apellido, documento, fecha_ingreso, email, telefono, cvempleado FROM empleados order by id_empleado;")
+                or die('Error: ' . mysqli_error($mysqli));
 
-                                        while ($data = mysqli_fetch_assoc($query)) {
-                                            echo "<tr>";
-                                            echo "<td>{$data['nombre']}</td>";
-                                            echo "<td>{$data['apellido']}</td>";
-                                            echo "<td>{$data['documento']}</td>";
-                                            echo "<td>{$data['email']}</td>";
-                                            echo "<td>{$data['telefono']}</td>";
-                                            echo "<td>{$data['fecha_ingreso']}</td>";
-                                            echo "</tr>";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
+            while ($data = mysqli_fetch_assoc($query)) {
+                echo "<tr>";
+                echo "<td>{$data['id_empleado']}</td>";
+                echo "<td>{$data['nombre']}</td>";
+                echo "<td>{$data['apellido']}</td>";
+                echo "<td>{$data['documento']}</td>";
+                echo "<td>{$data['email']}</td>";
+                echo "<td>{$data['telefono']}</td>";
+                echo "<td>{$data['fecha_ingreso']}</td>";
+                echo "<td>";
+                if (!empty($data['cvempleado'])) {
+                    echo '<a href="CV/' . basename($data['cvempleado']) . '" target="_blank" class="btn btn-warning btn-sm">
+                            <i class="fas fa-file-pdf"></i> Abrir CV
+                          </a>';
+                } else {
+                    echo '<span class="text-muted">No disponible</span>';
+                }
+                echo "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -337,7 +352,7 @@ if (!$auth_user) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Debian Dev's - Nicolas / Denis / César - 2024</span>
+                        <span>Copyright &copy; Debian Dev - César - 2024</span>
                     </div>
                 </div>
             </footer>

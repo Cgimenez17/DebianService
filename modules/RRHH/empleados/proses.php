@@ -10,8 +10,8 @@ require "../../../config/database.php"; // Asegúrate de tener la conexión a la
     // Detectar la acción
     if (isset($_GET['act'])) {
         $action = $_GET['act'];
-        echo (' llegue 1 $action');
-        // Agregar deposito
+
+        // Agregar empleado
         if ($action == 'insert' && isset($_POST['Guardar'])) {
             $codigo = $_POST['codigo'];
             $nombre = $_POST['nombre_empleado'];
@@ -21,35 +21,65 @@ require "../../../config/database.php"; // Asegúrate de tener la conexión a la
             $tel = $_POST['tel_empleado'];
             $direccion = $_POST['direc_empleado'];
 
-            $query_id = mysqli_query($mysqli, "SELECT MAX(id_user) as id FROM usuarios") or die('Error ' . mysqli_error($mysqli));
-                    $count = mysqli_num_rows($query_id);  
-                    if ($count <> 0) {
-                        $data_id = mysqli_fetch_assoc($query_id);
-                        $codigouser = $data_id['id'] + 1;
-                    } else {
-                        $codigouser = 1;
+            // Manejo del archivo cargado (CV)
+            if (isset($_FILES['cv_empleado']) && $_FILES['cv_empleado']['error'] === UPLOAD_ERR_OK) {
+                $fileTmpPath = $_FILES['cv_empleado']['tmp_name'];
+                $fileName = $_FILES['cv_empleado']['name'];
+                $fileSize = $_FILES['cv_empleado']['size'];
+                $fileType = $_FILES['cv_empleado']['type'];
+                $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+                // Validar que sea un archivo PDF
+                if ($fileExtension === 'pdf') {
+                    $uploadFileDir = __DIR__ . '/CV/'; // Ruta relativa a proses.php
+
+                    // Asegurarse de que el directorio exista
+                    if (!is_dir($uploadFileDir)) {
+                        mkdir($uploadFileDir, 0777, true);
                     }
 
-            // Insertar en la base de datos
-            $query = mysqli_query($mysqli, "INSERT INTO empleados (id_empleado, nombre, apellido, documento, email, telefono, direccion, fecha_ingreso, estado) 
-            VALUES ('$codigo', '$nombre','$apellido','$ci','$mail', '$tel', '$direccion' ,now(), 'MANDATORY_CHANGE')") 
-                    or die('Error: ' . mysqli_error($mysqli));
-                    
-            $query2 = mysqli_query($mysqli, "INSERT INTO usuarios (id_user, username, name_user, password, email, telefono, foto, permisos_acceso, status, idempleado)
-            VALUES('$codigouser', '$mail','$nombre',null,'$mail', '$tel', null , 'employee', 'MANDATORY_CHANGE', '$codigo')") 
-                or die('Error: ' . mysqli_error($mysqli));
+                    // Definir la ruta completa del archivo
+                    $destPath = $uploadFileDir . $codigo . $nombre . $apellido . '_cv.' . $fileExtension;
 
-            // Redirigir con un mensaje de éxito o error
-            if ($query) {
-                echo 'llegue 3';
-                header("Location: view.php?true");
+                    // Intentar mover el archivo
+                    if (move_uploaded_file($fileTmpPath, $destPath)) {
+                        // Insertar datos en la base de datos
+                        $queryEmpleados = mysqli_query($mysqli, "INSERT INTO empleados (id_empleado, nombre, apellido, documento, email, telefono, direccion, fecha_ingreso, estado, cvempleado) 
+                        VALUES ('$codigo', '$nombre','$apellido','$ci','$mail', '$tel', '$direccion', now(), 'MANDATORY_CHANGE', '$destPath')") 
+                                or die('Error: ' . mysqli_error($mysqli));
+
+                        // Insertar usuario asociado
+                        $queryObtenerId = mysqli_query($mysqli, "SELECT MAX(id_user) as id FROM usuarios") or die('Error ' . mysqli_error($mysqli));
+                        $data_id = mysqli_fetch_assoc($queryObtenerId);
+                        $codigouser = $data_id['id'] + 1;
+
+                        $queryUSER = mysqli_query($mysqli, "INSERT INTO usuarios (id_user, username, name_user, password, email, telefono, foto, permisos_acceso, status, idempleado)
+                        VALUES('$codigouser', '$mail', CONCAT('$nombre', ' ', '$apellido'), null, '$mail', '$tel', null, 'employee', 'MANDATORY_CHANGE', '$codigo')")
+                        or die('Error: ' . mysqli_error($mysqli));
+
+                        $queryCV = mysqli_query($mysqli, "INSERT INTO curriculum (id_curriculum, id_empleado, archivo_cv, fecha_carga)
+                        VALUES('$codigo','$codigo', '$destPath', now())") //insert en la tabla curriculum para el registro
+                        or die('Error: ' . mysqli_error($mysqli)); //doble value de codigo para que coincida el idcurriculum con el idempleado
+
+                        // Redirigir con un mensaje de éxito
+                        if ($queryEmpleados && $queryUSER && $queryCV) {
+                            header("Location: view.php?true");
+                        } else {
+                            header("Location: view.php?fail");
+                        }
+                    } else {
+                        echo "Error al mover el archivo al directorio de destino.";
+                    }
+                } else {
+                    echo "Por favor, cargue un archivo PDF válido.";
+                }
             } else {
-                echo 'llegue 4';
-                header("Location: view.php?fail");
+                echo "Error al cargar el archivo. Por favor, intente nuevamente.";
             }
         }
 
-        // Actualizar deposito
+        // Otros casos (update, delete) se mantienen igual
+        // Actualizar depósito
         elseif ($action == 'update' && isset($_POST['Guardar'])) {
             $codigo = $_POST['codigo'];
             $departamento = $_POST['departamento'];

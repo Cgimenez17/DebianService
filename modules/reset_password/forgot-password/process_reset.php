@@ -27,15 +27,19 @@ if (isset($_POST['token'], $_POST['email'], $_POST['new_password'])) {
 
         if ($stmt->rowCount() === 1) {
             
-            $stmt = $conn->prepare("UPDATE usuarios SET password = :password, status='activo' WHERE email = :email");
-            $stmt->bindParam(':password', $newPassword);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
+            $stmt1 = $conn->prepare("UPDATE usuarios SET password = :password, status='activo' WHERE email = :email");
+            $stmt1->bindParam(':password', $newPassword);
+            $stmt1->bindParam(':email', $email);
+            $stmt1->execute(); //Hace el update de la contraseña
+
+            $stmt2 = $conn->prepare("UPDATE empleados SET estado = 'activo' WHERE email = :email");
+            $stmt2->bindParam(':email', $email);
+            $stmt2->execute(); //Al resetear la contraseña activa el empleado para hacer el login
 
             
-            $stmt = $conn->prepare("DELETE FROM password_reset WHERE email = :email");
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
+            $stmt3 = $conn->prepare("DELETE FROM password_reset WHERE email = :email");
+            $stmt3->bindParam(':email', $email);
+            $stmt3->execute(); //Borra el caché del token
 
             
             $_SESSION['message'] = "¡Contraseña actualizada correctamente!";

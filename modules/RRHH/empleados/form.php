@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Verificar si existe el parámetro 'form' en la URL
 if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
     <div class="container-fluid">
@@ -14,12 +14,12 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
 
         <div class="card shadow mb-4">
             <div class="card-body">
-                <form action="proses.php?act=insert" method="POST">
+                <form action="proses.php?act=insert" method="POST" enctype="multipart/form-data">
                     <?php
                     require "../../../config/database.php";
                     // Generar el código automáticamente
                     $query_id = mysqli_query($mysqli, "SELECT MAX(id_empleado) as id FROM empleados") or die('Error ' . mysqli_error($mysqli));
-                    $count = mysqli_num_rows($query_id);  
+                    $count = mysqli_num_rows($query_id);
                     if ($count <> 0) {
                         $data_id = mysqli_fetch_assoc($query_id);
                         $codigo = $data_id['id'] + 1;
@@ -29,32 +29,43 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
                     ?>
                     <div class="form-group">
                         <label for="codigo">Código de Empleado</label>
-                        <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $codigo; ?>" readonly>
+                        <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $codigo; ?>"
+                            readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="nombre_empleado">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_empleado" name="nombre_empleado" placeholder="" required >
+                        <input type="text" class="form-control" id="nombre_empleado" name="nombre_empleado"
+                            placeholder="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+                            title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="ape_empleado">Apellido</label>
-                        <input type="text" class="form-control" id="ape_empleado" name="ape_empleado" placeholder="" required >
+                        <input type="text" class="form-control" id="ape_empleado" name="ape_empleado"
+                            placeholder="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+                            title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="nro_ci_empleado">Número de Cédula</label>
-                        <input type="text" class="form-control" id="nro_ci_empleado" name="nro_ci_empleado" placeholder="" required >
+                        <input type="text" class="form-control" id="nro_ci_empleado" name="nro_ci_empleado"
+                            placeholder="" pattern="\d+" title="Solo se permiten números"
+                            onkeypress="return soloNumeros(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="mail_empleado">Correo electrónico</label>
-                        <input type="text" class="form-control" id="mail_empleado" name="mail_empleado" placeholder="El correo ingresado se utilizará para el acceso al sistema" required >
+                        <input type="email" class="form-control" id="mail_empleado" name="mail_empleado"
+                            placeholder="Este correo se utilizará para el acceso al sistema" title="Debe ingresar un correo válido que contenga '@'"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label for="tel_empleado">Teléfono</label>
-                        <input type="text" class="form-control" id="tel_empleado" name="tel_empleado" placeholder="" required >
+                        <input type="text" class="form-control" id="tel_empleado" name="tel_empleado"
+                            placeholder="" pattern="\d+" title="Solo se permiten números"
+                            onkeypress="return soloNumeros(event)" required>
                     </div>
 
                     <div class="form-group">
@@ -62,14 +73,43 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
                         <input type="text" class="form-control" id="direc_empleado" name="direc_empleado" placeholder="" required >
                     </div>
 
+                    <div class="form-group">
+                        <label for="direc_empleado">Cargar CV del Empleado</label>
+                        <input type="file" class="form-control" id="cv_empleado" name="cv_empleado"
+                            placeholder="" required>
+                    </div>
+
                     <button type="submit" class="btn btn-primary" name="Guardar">Guardar</button>
                     <a href="view.php" class="btn btn-secondary">Cancelar</a>
+                    <script>
+                        // Permitir solo letras
+                        function soloLetras(e) {
+                            const key = e.key;
+                            const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]$/; // Letras, acentos y espacios
+                            if (!regex.test(key)) {
+                                e.preventDefault();
+                                return false;
+                            }
+                            return true;
+                        }
+
+                        // Permitir solo números
+                        function soloNumeros(e) {
+                            const key = e.key;
+                            const regex = /^[0-9]$/; // Solo números
+                            if (!regex.test(key)) {
+                                e.preventDefault();
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
                 </form>
             </div>
         </div>
     </div>
-<?php
-} elseif (isset($_GET['form_ciudad']) && $_GET['form'] == 'edit') { 
+    <?php
+} elseif (isset($_GET['form_ciudad']) && $_GET['form'] == 'edit') {
     if (isset($_GET['id'])) {
         // Consultar los datos de la ciudad
         $query = mysqli_query($mysqli, "select cod_ciudad, descrip_ciudad from ciudad where cod_ciudad = '$_GET[id]'") or die('Error: ' . mysqli_error($mysqli));
@@ -92,12 +132,14 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
                 <form action="proses.php?act=update" method="POST">
                     <div class="form-group">
                         <label for="codigo">Código</label>
-                        <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $data['cod_ciudad']; ?>" readonly>
+                        <input type="text" class="form-control" id="codigo" name="codigo"
+                            value="<?php echo $data['cod_ciudad']; ?>" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="descrip">Descripción</label>
-                        <input type="text" class="form-control" id="descrip" name="descrip" value="<?php echo $data['descrip_ciudad']; ?>" required>
+                        <input type="text" class="form-control" id="descrip" name="descrip"
+                            value="<?php echo $data['descrip_ciudad']; ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary" name="Guardar">Guardar</button>
@@ -106,9 +148,10 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
             </div>
         </div>
     </div>
-<?php 
-} else { 
+<?php
+} else {
     // Si no existe 'form' en la URL o el valor no es válido, redirigir a la lista de ciudades
     header('Location: view.php');
 }
+
 ?>
