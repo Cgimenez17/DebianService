@@ -119,11 +119,11 @@ if (!$auth_user) {
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <!--div class="sidebar-heading">
                 Referenciales
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -141,7 +141,7 @@ if (!$auth_user) {
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Utilities Collapse Menu>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -157,15 +157,15 @@ if (!$auth_user) {
                 </div>
             </li>
 
-            <!-- Divider -->
+            <!-- Divider>
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+            <!-- Heading>
             <div class="sidebar-heading">
                 Centro de control
             </div>
 
-           <!-- Nav Item - Pages Collapse Menu -->
+           <!-- Nav Item - Pages Collapse Menu>
            <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">
@@ -183,7 +183,7 @@ if (!$auth_user) {
                 </div>
             </div>
         </li>
-            <!-- Nav Item - Pages Collapse Menu -->
+            < Nav Item - Pages Collapse Menu >
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdm"
                     aria-expanded="true" aria-controls="collapseAdm">
@@ -196,7 +196,7 @@ if (!$auth_user) {
                         <a class="collapse-item" href="modules/reset_password/reset.php">Cambiar contraseña</a>
                     </div>
                 </div>
-            </li>
+            </li-->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserrhh"
@@ -207,7 +207,7 @@ if (!$auth_user) {
                 <div id="collapserrhh" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="modules/RRHH/empleados/view.php">Lista de Empleados</a>
-                        <a class="collapse-item" href="modules/reset_password/reset.php">Asistencias / Permisos</a>
+                        <a class="collapse-item" href="modules/RRHH/empleados/Asistencias/asistencia.php">Asistencias / Permisos</a>
                         <a class="collapse-item" href="modules/reset_password/reset.php">CV's y Contratos</a>
                         <a class="collapse-item" href="modules/reset_password/reset.php">Lotes de Documentos</a>
                     </div>
