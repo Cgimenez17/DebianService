@@ -26,7 +26,7 @@ if (isset($_GET['act'])) {
         $cargo = $_POST['cargo_empleado'];
         $salario = $_POST['salario_empleado'];
         $fechafincontrato = $_POST['fecha_fin'];
-        
+
 
         // Manejo del archivo cargado (CV)
         if (isset($_FILES['cv_empleado']) && $_FILES['cv_empleado']['error'] === UPLOAD_ERR_OK) {
@@ -71,6 +71,9 @@ if (isset($_GET['act'])) {
                     // Capturar las cláusulas seleccionadas
                     if (isset($_POST['clausulas']) && !empty($_POST['clausulas'])) {
                         $clausulas = $_POST['clausulas'];
+                        $clausula = str_replace('$salario', $datosEmpleado['salario'], $clausula);
+                        $clausula = str_replace('$fechaInicio', $datosEmpleado['fechaInicio'], $clausula);
+                        $clausula = str_replace('$fechafincontrato', $datosEmpleado['fechafincontrato'], $clausula);
                     } else {
                         $clausulas = [];
                     }
@@ -87,7 +90,12 @@ if (isset($_GET['act'])) {
                         'correo' => $mail,
                         'telefono' => $tel,
                         'direccion' => $direccion,
+                        'cargo' => $cargo,
+                        'salario' => $salario,
+                        'fecha_fin' => $fechafincontrato,
+                        'fecha_ingreso'=>$fechaInicio
                     ];
+
 
                     // Generar el contrato
                     $rutaContrato = generarContrato($datosEmpleado, $clausulas, $codigo);

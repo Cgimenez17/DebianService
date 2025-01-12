@@ -29,50 +29,37 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
                     ?>
                     <div class="form-group">
                         <label for="codigo">Código de Empleado</label>
-                        <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $codigo; ?>"
-                            readonly>
+                        <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $codigo; ?>" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="nombre_empleado">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_empleado" name="nombre_empleado"
-                            placeholder="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
-                            title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
+                        <input type="text" class="form-control" id="nombre_empleado" name="nombre_empleado" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="ape_empleado">Apellido</label>
-                        <input type="text" class="form-control" id="ape_empleado" name="ape_empleado"
-                            placeholder="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
-                            title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
+                        <input type="text" class="form-control" id="ape_empleado" name="ape_empleado" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="nro_ci_empleado">Número de Cédula</label>
-                        <input type="text" class="form-control" id="nro_ci_empleado" name="nro_ci_empleado"
-                            placeholder="" pattern="\d+" title="Solo se permiten números"
-                            onkeypress="return soloNumeros(event)" required>
+                        <input type="text" class="form-control" id="nro_ci_empleado" name="nro_ci_empleado" pattern="\d+" title="Solo se permiten números" onkeypress="return soloNumeros(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="mail_empleado">Correo electrónico</label>
-                        <input type="email" class="form-control" id="mail_empleado" name="mail_empleado"
-                            placeholder="Este correo se utilizará para el acceso al sistema" title="Debe ingresar un correo válido que contenga '@'"
-                            required>
+                        <input type="email" class="form-control" id="mail_empleado" name="mail_empleado" placeholder="Este correo se utilizará para el acceso al sistema" title="Debe ingresar un correo válido que contenga '@'" required>
                     </div>
 
                     <div class="form-group">
                         <label for="tel_empleado">Teléfono</label>
-                        <input type="text" class="form-control" id="tel_empleado" name="tel_empleado"
-                            placeholder="" pattern="\d+" title="Solo se permiten números"
-                            onkeypress="return soloNumeros(event)" required>
+                        <input type="text" class="form-control" id="tel_empleado" name="tel_empleado" pattern="\d+" title="Solo se permiten números" onkeypress="return soloNumeros(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="cargo_empleado">Cargo</label>
-                        <input type="text" class="form-control" id="cargo_empleado" name="cargo_empleado"
-                            placeholder="" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
-                            title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
+                        <input type="text" class="form-control" id="cargo_empleado" name="cargo_empleado" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo se permiten letras y espacios" onkeypress="return soloLetras(event)" required>
                     </div>
 
                     <div class="form-group">
@@ -82,75 +69,48 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
 
                     <div class="form-group">
                         <label for="salario_empleado">Salario</label>
-                        <input type="text" class="form-control" id="salario_empleado" name="salario_empleado"
-                            placeholder="" pattern="\d+" title="Solo se permiten números"
-                            onkeypress="return soloNumeros(event)" required>
+                        <input type="text" class="form-control" id="salario_empleado" name="salario_empleado" pattern="\d+" title="Solo se permiten números" onkeypress="return soloNumeros(event)" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="direc_empleado">Fecha de ingreso</label>
-                        <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" placeholder="" required>
+                        <label for="fecha_ingreso">Fecha de ingreso</label>
+                        <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="direc_empleado">Cargar CV del Empleado</label>
-                        <input type="file" class="form-control" id="cv_empleado" name="cv_empleado"
-                            placeholder="" required>
+                        <label for="cv_empleado">Cargar CV del Empleado</label>
+                        <input type="file" class="form-control" id="cv_empleado" name="cv_empleado" required>
                     </div>
 
                     <div class="form-group">
                         <label for="clausulas">Seleccione las cláusulas del contrato:</label><br>
-                        <input type="checkbox" name="clausulas[]" value="Cláusula 1, Salario: 
-                                El salario del empleado será de 2.680.373 Gs. mensuales, que se pagarán 
-                                al final de cada mes. El pago se realizará mediante la banca Web de la Empresa, y estará sujeto a las deducciones legales aplicables, 
-                                tales como impuestos, aportes a la seguridad social y otros conceptos establecidos por la ley.">
-                                Cláusula 1: Salario<br> El salario del empleado será de 2.680.373 Gs. mensuales, que se pagarán al final de cada mes.
-                                El pago se realizará mediante la banca Web de la Empresa, y estará sujeto a las deducciones legales aplicables,
-                                tales como impuestos, aportes a la seguridad social y otros conceptos establecidos por la ley.<br>
-                        <input type="checkbox" name="clausulas[]" value="Cláusula 2, Horario de Trabajo: 
-                                El horario de trabajo será de 8 horas a la semana, distribuidas en 5 días de la semana, Lunes a viernes.
-                                El horario laboral será de 08:00hs a 17:00hs, con una hora de descanso diario. Cualquier modificación al
-                                horario deberá ser acordada por ambas partes con antelación.">Cláusula 2: Horario de Trabajo <br>
-                                El horario de trabajo será de 8 horas a la semana, distribuidas en 5 días de la semana, Lunes a viernes.
-                                El horario laboral será de 08:00hs a 17:00hs, con una hora de descanso diario. Cualquier modificación al horario
-                                deberá ser acordada por ambas partes con antelación.<br>
-                        <input type="checkbox" name="clausulas[]" value="Cláusula 3, Ausencias:
-                                El empleado se compromete a informar con antelación cualquier ausencia laboral, ya sea por enfermedad, 
-                                emergencia o cualquier otro motivo. En caso de ausencia no justificada, el empleador podrá aplicar sanciones de acuerdo 
-                                con la normativa interna de la empresa. En caso de enfermedad, el empleado deberá presentar un justificante médico que respalde su inasistencia."> 
-                                Cláusula 3, Ausencias: <br>
-                                El empleado se compromete a informar con antelación cualquier ausencia laboral, ya sea por enfermedad, 
-                                emergencia o cualquier otro motivo. En caso de ausencia no justificada, el empleador podrá aplicar sanciones de acuerdo 
-                                con la normativa interna de la empresa. En caso de enfermedad, el empleado deberá presentar un justificante médico que respalde su inasistencia.<br>
-                        <input type="checkbox" name="clausulas[]" value="Cláusula 4, Permisos:
-                                El empleado tiene derecho a solicitar permisos de ausencia para asuntos personales, siempre que se solicite con suficiente antelación. 
-                                Los permisos serán evaluados y autorizados por el empleador, y podrán ser remunerados o no, 
-                                dependiendo de la política interna de la empresa y de la ley laboral vigente."> Cláusula 4, Permisos: <br>
-                                El empleado tiene derecho a solicitar permisos de ausencia para asuntos personales, siempre que se solicite con suficiente antelación. 
-                                Los permisos serán evaluados y autorizados por el empleador, y podrán ser remunerados o no, 
-                                dependiendo de la política interna de la empresa y de la ley laboral vigente.<br>
-                                <input type="checkbox" name="clausulas[]" value="Cláusula 5, Fecha de Cobro:
-                                El salario se pagará a más tardar el [día] de cada mes. En caso de que dicho día coincida con un día no laborable, 
-                                el pago se realizará el día laborable inmediatamente anterior."> Cláusula 5: Fecha de Cobro <br>
-                                El salario se pagará a más tardar el [día] de cada mes. En caso de que dicho día coincida con un día no laborable, 
-                                el pago se realizará el día laborable inmediatamente anterior. <br>
-                                <input type="checkbox" name="clausulas[]" value="Cláusula 6, Fecha de Finalización del Contrato:
-                                Este contrato tendrá una duración de [período de tiempo], comenzando el [fecha de inicio] y finalizando el [fecha de finalización].
-                                 Cualquiera de las partes podrá terminar este contrato antes de la fecha estipulada, siempre que se cumplan las condiciones legales y
-                                  contractuales correspondientes."> 
-                                Cláusula 6, Fecha de Finalización del Contrato <br>
-                                Este contrato tendrá una duración de [período de tiempo], comenzando el [fecha de inicio] y finalizando el [fecha de finalización]. 
-                                Cualquiera de las partes podrá terminar este contrato antes de la fecha estipulada, siempre que se cumplan las condiciones legales y
-                                contractuales correspondientes.<br>
+                        <input type="checkbox" name="clausulas[]" value="Cláusula 1, Salario: El salario del empleado será de $salario Gs. mensuales, que se pagarán al final de cada mes. El pago se realizará mediante la banca Web de la Empresa, y estará sujeto a las deducciones legales aplicables, tales como impuestos, aportes a la seguridad social y otros conceptos establecidos por la ley."> Cláusula 1: Salario<br>
+                        El salario del empleado será de <span id="salario_clausula">[salario]</span> mensuales, que se pagarán al final de cada mes. El pago se realizará mediante la banca Web de la Empresa, y estará sujeto a las deducciones legales aplicables, tales como impuestos, aportes a la seguridad social y otros conceptos establecidos por la ley.<br>
+
+                        <input type="checkbox" name="clausulas[]" value="Cláusula 2, Horario de Trabajo: El horario de trabajo será de 8 horas a la semana, distribuidas en 5 días de la semana, Lunes a viernes. El horario laboral será de 08:00hs a 17:00hs, con una hora de descanso diaria. Cualquier modificación al horario deberá ser acordada por ambas partes con antelación."> Cláusula 2: Horario de Trabajo<br>
+                        El horario de trabajo será de 8 horas a la semana, distribuidas en 5 días de la semana, Lunes a viernes. El horario laboral será de 08:00hs a 17:00hs, con una hora de descanso diaria. Cualquier modificación al horario deberá ser acordada por ambas partes con antelación.<br>
+
+                        <input type="checkbox" name="clausulas[]" value="Cláusula 3, Ausencias: El empleado se compromete a informar con antelación cualquier ausencia laboral, ya sea por enfermedad, emergencia o cualquier otro motivo. En caso de ausencia no justificada, el empleador podrá aplicar sanciones de acuerdo con la normativa interna de la empresa. En caso de enfermedad, el empleado deberá presentar un justificante médico que respalde su inasistencia."> Cláusula 3, Ausencias:<br>
+                        El empleado se compromete a informar con antelación cualquier ausencia laboral, ya sea por enfermedad, emergencia o cualquier otro motivo. En caso de ausencia no justificada, el empleador podrá aplicar sanciones de acuerdo con la normativa interna de la empresa. En caso de enfermedad, el empleado deberá presentar un justificante médico que respalde su inasistencia.<br>
+
+                        <input type="checkbox" name="clausulas[]" value="Cláusula 4, Permisos: El empleado tiene derecho a solicitar permisos de ausencia para asuntos personales, siempre que se solicite con suficiente antelación. Los permisos serán evaluados y autorizados por el empleador, y podrán ser remunerados o no, dependiendo de la política interna de la empresa y de la ley laboral vigente."> Cláusula 4, Permisos:<br>
+                        El empleado tiene derecho a solicitar permisos de ausencia para asuntos personales, siempre que se solicite con suficiente antelación. Los permisos serán evaluados y autorizados por el empleador, y podrán ser remunerados o no, dependiendo de la política interna de la empresa y de la ley laboral vigente.<br>
+
+                        <input type="checkbox" name="clausulas[]" value="Cláusula 5, Fecha de Cobro: El salario se pagará a más tardar el 05 de cada mes. En caso de que dicho día coincida con un día no laborable, el pago se realizará el día laborable inmediatamente anterior."> Cláusula 5: Fecha de Cobro<br>
+                        El salario se pagará a más tardar el 05 de cada mes. En caso de que dicho día coincida con un día no laborable, el pago se realizará el día laborable inmediatamente anterior.<br>
+
+                        <input type="checkbox" name="clausulas[]" value="Cláusula 6, Fecha de Finalización del Contrato: Este contrato tendrá una duración desde el $fechaInicio y finalizando el $fechafincontrato. Cualquiera de las partes podrá terminar este contrato antes de la fecha estipulada, siempre que se cumplan las condiciones legales y contractuales correspondientes."> Cláusula 6, Fecha de Finalización del Contrato<br>
+                        Este contrato tendrá una duración desde el [fecha de inicio] y finalizando el [fecha de finalización]. Cualquiera de las partes podrá terminar este contrato antes de la fecha estipulada, siempre que se cumplan las condiciones legales y contractuales correspondientes.<br>
+
                         <div class="form-group">
                             <label for="fecha_fin">Fecha de finalización del contrato</label>
-                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" placeholder="" required>
+                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
                         </div>
                     </div>
 
-
                     <button type="submit" class="btn btn-primary" name="Guardar">Guardar</button>
                     <a href="view.php" class="btn btn-secondary">Cancelar</a>
+
                     <script>
                         // Permitir solo letras
                         function soloLetras(e) {
@@ -173,6 +133,18 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
                             }
                             return true;
                         }
+
+                        // Actualizar cláusulas dinámicamente
+                        document.getElementById('salario_empleado').addEventListener('input', function() {
+                            const salario = document.getElementById('salario_empleado').value;
+                            document.getElementById('salario_clausula').textContent = salario;
+                        });
+
+                        // Actualizar fecha de finalización
+                        document.getElementById('fecha_fin').addEventListener('input', function() {
+                            const fechaFin = document.getElementById('fecha_fin').value;
+                            document.getElementById('fecha_fin_clausula').textContent = fechaFin;
+                        });
                     </script>
                 </form>
             </div>
@@ -180,8 +152,7 @@ if (isset($_GET['form_empleado']) && $_GET['form'] == 'add') { ?>
     </div>
 <?php
 } else {
-    // Si no existe 'form' en la URL o el valor no es válido, redirigir a la lista de ciudades
+    // Si no existe 'form' en la URL o el valor no es válido, redirigir a la lista de empleados
     header('Location: view.php');
 }
-
 ?>
